@@ -1,4 +1,4 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Environment, Sphere, Cylinder, Html } from '@react-three/drei';
 import * as THREE from 'three';
@@ -9,6 +9,8 @@ const atomColors: Record<string, string> = {
   O: '#ff0000', // Oxygen (red)
   N: '#0000ff', // Nitrogen (blue)
   Cl: '#00ff00', // Chlorine (green)
+  S: '#ffff00', // Sulfur (yellow)
+  P: '#ffa500', // Phosphorus (orange)
 };
 
 const atomSizes: Record<string, number> = {
@@ -17,6 +19,8 @@ const atomSizes: Record<string, number> = {
   O: 0.73,
   N: 0.75,
   Cl: 0.99,
+  S: 1.02,
+  P: 1.06,
 };
 
 export interface AtomData {
@@ -37,7 +41,6 @@ export interface MoleculeModel {
   bonds: BondData[];
 }
 
-// Some mock models
 export const MOCK_MOLECULES: Record<string, MoleculeModel> = {
   'Methane': {
     atoms: [
@@ -53,25 +56,47 @@ export const MOCK_MOLECULES: Record<string, MoleculeModel> = {
       { id: 'b3', from: 'a1', to: 'a4', order: 1 },
       { id: 'b4', from: 'a1', to: 'a5', order: 1 },
     ]
-  },
-  'Ethene': {
-    atoms: [
-      { id: 'c1', element: 'C', position: [0, 0, 0.67] },
-      { id: 'c2', element: 'C', position: [0, 0, -0.67] },
-      { id: 'h1', element: 'H', position: [0, 0.92, 1.23] },
-      { id: 'h2', element: 'H', position: [0, -0.92, 1.23] },
-      { id: 'h3', element: 'H', position: [0, 0.92, -1.23] },
-      { id: 'h4', element: 'H', position: [0, -0.92, -1.23] },
-    ],
-    bonds: [
-      { id: 'b1', from: 'c1', to: 'c2', order: 2 },
-      { id: 'b2', from: 'c1', to: 'h1', order: 1 },
-      { id: 'b3', from: 'c1', to: 'h2', order: 1 },
-      { id: 'b4', from: 'c2', to: 'h3', order: 1 },
-      { id: 'b5', from: 'c2', to: 'h4', order: 1 },
-    ]
   }
 };
+
+function parseSdf(sdfText: string): MoleculeModel {
+  const lines = sdfText.split('\n');
+  if (lines.length < 4) return { atoms: [], bonds: [] };
+  
+  const countsLine = lines[3];
+  const numAtoms = parseInt(countsLine.substring(0, 3).trim(), 10) || 0;
+  const numBonds = parseInt(countsLine.substring(3, 6).trim(), 10) || 0;
+  
+  const atoms: AtomData[] = [];
+  const bonds: BondData[] = [];
+  
+  let currentLine = 4;
+  for (let i = 0; i < numAtoms; i++) {
+    const line = lines[currentLine++];
+    if (!line) continue;
+    const x = parseFloat(line.substring(0, 10).trim() || "0");
+    const y = parseFloat(line.substring(10, 20).trim() || "0");
+    const z = parseFloat(line.substring(20, 30).trim() || "0");
+    const element = line.substring(31, 34).trim() || "C";
+    atoms.push({ id: `a${i + 1}`, element, position: [x, y, z] });
+  }
+  
+  for (let i = 0; i < numBonds; i++) {
+    const line = lines[currentLine++];
+    if (!line) continue;
+    const fromIdx = parseInt(line.substring(0, 3).trim(), 10);
+    const toIdx = parseInt(line.substring(3, 6).trim(), 10);
+    const order = parseInt(line.substring(6, 9).trim(), 10);
+    bonds.push({
+      id: `b${i + 1}`,
+      from: `a${fromIdx}`,
+      to: `a${toIdx}`,
+      order: order || 1
+    });
+  }
+  
+  return { atoms, bonds };
+}
 
 function Bond({ start, end, order, mode }: { start: THREE.Vector3, end: THREE.Vector3, order: number, mode: 'ball-stick' | 'space-fill' | 'skeletal' }) {
   if (mode === 'space-fill') return null; // No bonds in space fill
@@ -121,6 +146,7 @@ function Atom({ atom, mode, showLabels }: { atom: AtomData, mode: 'ball-stick' |
 
 interface MoleculeViewerProps {
   model?: MoleculeModel;
+  formula?: string;
   mode?: 'ball-stick' | 'space-fill' | 'skeletal';
   showLabels?: boolean;
 }
@@ -158,17 +184,64 @@ function MoleculeContent({ model, mode, showLabels }: { model: MoleculeModel, mo
   );
 }
 
-export default function MoleculeViewer({ model = MOCK_MOLECULES['Methane'], mode = 'ball-stick', showLabels = false }: MoleculeViewerProps) {
+export default function MoleculeViewer({ model, formula, mode = 'ball-stick', showLabels = false }: MoleculeViewerProps) {
+  const [fetchedModel, setFetchedModel] = useState<MoleculeModel | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!formula) return;
+    
+    let active = true;
+    setLoading(true);
+    
+    const query = formula.toLowerCase() === 'sucrose' ? 'sucrose' : formula;
+    
+    fetch(`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${encodeURIComponent(query)}/record/SDF/?record_type=3d`)
+      .then(res => res.text())
+      .then(text => {
+        if (!active) return;
+        if (text.includes('PUGREST.ServerBusy') || text.includes('PUGREST.NotFound') || text.startsWith('{')) {
+          console.warn("Pubchem could not return SDF for", formula);
+          setFetchedModel(null);
+        } else {
+          try {
+            const m = parseSdf(text);
+            setFetchedModel(m);
+          } catch(e) {
+            console.error("error parsing sdf", e);
+            setFetchedModel(null);
+          }
+        }
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("fetch error", err);
+        setFetchedModel(null);
+        setLoading(false);
+      });
+      
+    return () => { active = false; };
+  }, [formula]);
+  
+  const activeModel = fetchedModel || model || MOCK_MOLECULES['Methane'];
+
   return (
-    <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 10, 5]} intensity={1} />
-      <directionalLight position={[-10, -10, -5]} intensity={0.5} />
-      <Environment preset="city" />
-      
-      <MoleculeContent model={model} mode={mode} showLabels={showLabels} />
-      
-      <OrbitControls makeDefault autoRotate autoRotateSpeed={1} enablePan={false} minDistance={3} maxDistance={20} />
-    </Canvas>
+    <div className="w-full h-full relative">
+      {loading && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/40 backdrop-blur-sm text-white font-mono text-sm">
+          Молекула жүктелуде...
+        </div>
+      )}
+      <Canvas camera={{ position: [0, 0, Math.max(8, (activeModel.atoms.length * 0.4))] }}>
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[10, 10, 5]} intensity={1} />
+        <directionalLight position={[-10, -10, -5]} intensity={0.5} />
+        <Environment preset="city" />
+        
+        <MoleculeContent model={activeModel} mode={mode} showLabels={showLabels} />
+        
+        <OrbitControls makeDefault autoRotate autoRotateSpeed={1} enablePan={false} minDistance={3} maxDistance={40} />
+      </Canvas>
+    </div>
   );
 }
