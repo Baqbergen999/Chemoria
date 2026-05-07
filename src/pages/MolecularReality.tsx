@@ -14,15 +14,79 @@ interface Recipe {
 }
 
 const REACTIONS: Recipe[] = [
-  { r1: 'Этен', r2: 'Br2', product: '1,2-Дибромэтан', mechanism: 'Галогендеу (Электрофильді қосылу)', type: 'success' },
-  { r1: 'Этен', r2: 'H2O / H2SO4', product: 'Этанол', mechanism: 'Қышқыл катализдейтін гидратация', type: 'success' },
-  { r1: 'Бензол', r2: 'Br2 / FeBr3', product: 'Бромбензол', mechanism: 'Электрофильді ароматты орын басу', type: 'success' },
-  { r1: 'Бензол', r2: 'Br2', product: 'Реакция жүрмейді', mechanism: 'Бензолға Льюис қышқылы катализаторы қажет', type: 'error' },
-  { r1: 'Циклогексен', r2: 'H2O / H2SO4', product: 'Циклогексанол', mechanism: 'Қышқыл катализдейтін гидратация', type: 'success' },
-  { r1: 'Метан', r2: 'Br2', product: 'Бромметан', mechanism: 'Еркін радикалды галогендеу (Жарық/Жылу қажет)', type: 'success' }
+  // Көмірсулар (Carbohydrates)
+  { r1: 'C6H12O6 (глюкоза)', r2: 'Ag2O (аммиакты)', product: 'C6H12O7 + 2Ag↓', mechanism: 'Күміс айна реакциясы (Тотығу)', type: 'success' },
+  { r1: 'C6H12O6 (глюкоза)', r2: 'Cu(OH)2', product: 'Cu2O↓ + H2O + қышқыл', mechanism: 'Глюкозаның тотығуы (мыс(II) гидроксидімен)', type: 'success' },
+  { r1: 'C6H12O6 (глюкоза)', r2: '6O2', product: '6CO2 + 6H2O', mechanism: 'Толық тотығу (жану)', type: 'success' },
+  { r1: '(C6H10O5)n (крахмал)', r2: 'I2', product: 'Көк түс', mechanism: 'Крахмалға сапалық реакция', type: 'success' },
+  { r1: 'C12H22O11 (сахароза)', r2: 'конц. H2SO4', product: 'Көмір (C) + H2O', mechanism: 'Сахарозаның көмірленуі (сусыздану)', type: 'success' },
+  { r1: '(C6H10O5)n (крахмал)', r2: 'H2O + H+', product: 'C6H12O6 (Глюкоза)', mechanism: 'Полисахарид гидролизі', type: 'success' },
+  
+  // Алициклді және Терпендер (Alicyclic & Terpenes)
+  { r1: 'C3H6 (циклопропан)', r2: 'Br2', product: 'C3H6Br2', mechanism: 'Циклдің үзілуі (қосылу)', type: 'success' },
+  { r1: 'C10H16 (терпен)', r2: 'KMnO4', product: 'MnO2↓ (қоңыр)', mechanism: 'Қанықпаған байланыстардың тотығуы', type: 'success' },
+  
+  // Арендер (Arenes)
+  { r1: 'C6H6 (бензол)', r2: 'O2 (ауада)', product: 'CO2 + H2O + күйе', mechanism: 'Бензолдың жануы', type: 'success' },
+  { r1: 'C6H5CH3 (толуол)', r2: 'KMnO4', product: 'C6H5COOK + MnO2↓', mechanism: 'Бүйір тізбектің тотығуы', type: 'success' },
+  { r1: 'C6H5Cl (хлорбензол)', r2: 'NaOH (конц.)', product: 'C6H5OH + NaCl', mechanism: 'Нуклеофильді орын басу (жоғары қысымда)', type: 'success' },
+  
+  // Нитро және Амин (Nitro & Amino)
+  { r1: 'C6H5NO2 (нитробензол)', r2: 'Fe + HCl', product: 'C6H5NH2 + FeCl2 + H2O', mechanism: 'Зинин реакциясы (тотықсыздану)', type: 'success' },
+  { r1: 'C6H5SO3H', r2: 'NaCl', product: 'C6H5SO3Na + HCl', mechanism: 'Тұз түзілуі', type: 'success' },
+  
+  // Фенолдар (Phenols)
+  { r1: 'C6H5OH (фенол)', r2: 'Br2 (суда)', product: 'C6H2Br3OH↓ (ақ) + HBr', mechanism: 'Фенолды бромдау (сапалық реакция)', type: 'success' },
+  { r1: 'C6H5OH (фенол)', r2: 'FeCl3', product: 'Күлгін түс', mechanism: 'Темір(III) хлоридімен кешен түзілуі', type: 'success' },
+  { r1: 'C6H5OH (фенол)', r2: 'NaOH', product: 'C6H5ONa + H2O', mechanism: 'Натрий фенолятының түзілуі', type: 'success' },
+  
+  // Альдегидтер және Қышқылдар (Aldehydes & Acids)
+  { r1: 'C6H5CHO (бензальдегид)', r2: 'Ag2O (аммиакты)', product: 'C6H5COOH + 2Ag↓', mechanism: 'Күміс айна реакциясы', type: 'success' },
+  { r1: 'C6H5CHO (бензальдегид)', r2: 'Cu(OH)2', product: 'Cu2O↓ (қызыл) + C6H5COOH', mechanism: 'Мыс(II) гидроксидімен тотығу', type: 'success' },
+  { r1: 'C6H5COOH', r2: 'NaHCO3', product: 'C6H5COONa + CO2↑ + H2O', mechanism: 'Карбон қышқылының тұз түзілуі', type: 'success' },
+  
+  // Аминдер (Amines)
+  { r1: 'C6H5NH2 (анилин)', r2: 'HCl', product: 'C6H5NH3+Cl-', mechanism: 'Анилиннің тұз түзілуі', type: 'success' },
+  { r1: 'C6H5NH2 (анилин)', r2: 'Br2 (суда)', product: 'C6H2Br3NH2↓ (ақ)', mechanism: 'Анилиннің бромдалуы', type: 'success' },
+  { r1: 'C6H5NH2 (анилин)', r2: 'CuSO4', product: 'Көк тұнба', mechanism: 'Кешен түзілуі', type: 'success' },
+  
+  // Диазо және Азоқосылыстар (Diazo & Azocompounds)
+  { r1: 'C6H5NH2 (анилин)', r2: 'NaNO2 + HCl (0-5°C)', product: 'C6H5N2+Cl-', mechanism: 'Диазоттау реакциясы', type: 'success' },
+  { r1: 'C6H5N2+Cl-', r2: 'C6H5OH (фенол)', product: 'C6H5N=NC6H4OH (қызғылт-сары)', mechanism: 'Азотіркесу реакциясы', type: 'success' },
+  { r1: 'C6H5N2+Cl-', r2: 'H2O', product: 'C6H5OH + N2↑ + HCl', mechanism: 'Диазотұзының гидролизі (қыздырғанда)', type: 'success' },
+  
+  // Көп ядролы (Polynuclear)
+  { r1: 'C6H5–CH2–C6H5', r2: 'KMnO4', product: 'C6H5–COOH + C6H5–COOH', mechanism: 'Дифенилметанның тотығуы', type: 'success' },
+  { r1: 'C6H5–C6H5', r2: 'конц. H2SO4', product: 'C6H5–C6H4–SO3H + H2O', mechanism: 'Дифенилдің сульфирленуі', type: 'success' },
+  { r1: 'C10H8 (нафталин)', r2: 'Br2 (суда)', product: 'C10H7Br + HBr', mechanism: 'Нафталиннің бромдалуы', type: 'success' },
+  { r1: 'C10H8 (нафталин)', r2: 'KMnO4', product: 'Қышқылдар қоспасы', mechanism: 'Нафталинның тотығуы', type: 'success' },
+  { r1: 'C14H10 (антрацен)', r2: 'малеин ангидриді', product: 'Дилс-Альдер өнімі', mechanism: 'Диендік синтез', type: 'success' },
+  
+  // Гетероциклдер (Heterocycles)
+  { r1: 'C5H5N (пиридин)', r2: 'HCl', product: 'C5H5NH+Cl-', mechanism: 'Пиридиннің тұз түзілуі', type: 'success' },
+  { r1: 'C4H4NH (пиррол)', r2: 'FeCl3', product: 'Қара-жасыл түс', mechanism: 'Пирролдың тотығуы', type: 'success' },
+  { r1: 'C4H4S (тиофен)', r2: 'Br2', product: 'C4H3BrS + HBr', mechanism: 'Тиофеннің бромдалуы', type: 'success' },
+  { r1: 'C3H4N2 (имидазол)', r2: 'HCl', product: 'C3H4N2·HCl', mechanism: 'Имидазолдың тұз түзілуі', type: 'success' },
+  { r1: 'C3H3NS (тиазол)', r2: 'AgNO3', product: 'Кешен', mechanism: 'Күміс иондарымен реакция', type: 'success' },
+  { r1: 'C3H4N2 (имидазол)', r2: 'CuSO4', product: 'Көк тұнба', mechanism: 'Мыс иондарымен реакция', type: 'success' },
+  { r1: 'C4H4N2 (пиримидин)', r2: 'HCl', product: 'C4H5N2+Cl-', mechanism: 'Пиримидиннің тұз түзілуі', type: 'success' },
+  { r1: 'C4H4N2O2 (урацил)', r2: 'NaOH', product: 'Тұз + H2O', mechanism: 'Урацилдің негізбен әрекеттесуі', type: 'success' },
+  { r1: 'C4H4N2 (пиримидин)', r2: 'KMnO4', product: 'NO2↑ + CO2', mechanism: 'Жоғары температурада тотығу', type: 'success' },
+  
+  // Витаминдер (Vitamins)
+  { r1: 'C6H8O6 (С витамині)', r2: 'I2', product: 'C6H6O6 + 2HI', mechanism: 'Аскорбин қышқылының йодпен тотығуы', type: 'success' },
+  { r1: 'C6H8O6 (С витамині)', r2: 'Ag2O', product: 'C6H6O6 + 2Ag↓', mechanism: 'Витамин С-ның аммиакты күміс ерітіндісімен реакциясы', type: 'success' },
+  { r1: 'C20H30O (А витамині)', r2: 'SbCl3', product: 'Көк түс', mechanism: 'Карр-Прайс реакциясы', type: 'success' }
 ];
 
-const AVAILABLE_REACTANTS = ['Этен', 'Бензол', 'Циклогексен', 'Метан', 'Br2', 'Br2 / FeBr3', 'H2O / H2SO4'];
+const AVAILABLE_REACTANTS = [
+  'C6H12O6 (глюкоза)', 'Ag2O (аммиакты)', 'Cu(OH)2', '6O2', '(C6H10O5)n (крахмал)', 'I2', 'C12H22O11 (сахароза)', 'конц. H2SO4', 'H2O + H+', 
+  'C3H6 (циклопропан)', 'Br2', 'C10H16 (терпен)', 'KMnO4', 'C6H6 (бензол)', 'O2 (ауада)', 'C6H5CH3 (толуол)', 'C6H5Cl (хлорбензол)', 'NaOH (конц.)', 
+  'C6H5NO2 (нитробензол)', 'Fe + HCl', 'C6H5SO3H', 'NaCl', 'C6H5OH (фенол)', 'Br2 (суда)', 'FeCl3', 'NaOH', 'C6H5CHO (бензальдегид)', 'C6H5COOH', 'NaHCO3', 
+  'C6H5NH2 (анилин)', 'HCl', 'CuSO4', 'NaNO2 + HCl (0-5°C)', 'C6H5N2+Cl-', 'H2O', 'C6H5–CH2–C6H5', 'C6H5–C6H5', 'C10H8 (нафталин)', 'C14H10 (антрацен)', 
+  'малеин ангидриді', 'C5H5N (пиридин)', 'C4H4NH (пиррол)', 'C4H4S (тиофен)', 'C3H4N2 (имидазол)', 'C3H3NS (тиазол)', 'AgNO3', 'C4H4N2 (пиримидин)', 
+  'C4H4N2O2 (урацил)', 'C6H8O6 (С витамині)', 'Ag2O', 'C20H30O (А витамині)', 'SbCl3'
+];
 
 function MoleculeNode({ label, position, color, isProduct }: any) {
   const meshRef = useRef<THREE.Group>(null);
@@ -65,6 +129,11 @@ export default function MolecularReality() {
   const [flask, setFlask] = useState<string[]>([]);
   const [reactionResult, setReactionResult] = useState<{result: string, type: 'success'|'error', msg: string} | null>(null);
   const [isReacting, setIsReacting] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredReactants = AVAILABLE_REACTANTS.filter(r => 
+    r.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const addReactant = (r: string) => {
     if (flask.length < 2 && !reactionResult && !isReacting) {
@@ -113,7 +182,7 @@ export default function MolecularReality() {
              <span className="truncate">Реакция Симуляторы</span>
            </h1>
            <p className="hidden sm:block text-neutral-400 mt-2 font-mono text-sm max-w-md">
-             Екі затты араластырыңыз. Органикалық химия ережелеріне сүйеніп нәтижені болжаңыз. Реакция жағдайларына назар аударыңыз!
+             Екі затты араластырыңыз. Органикалық химия ережелеріне сүйеніп нәтижені болжаңыз.
            </p>
         </div>
         <div className="pointer-events-auto shrink-0">
@@ -127,19 +196,32 @@ export default function MolecularReality() {
       </div>
 
       {/* Main Overlay */}
-      <div className="absolute top-16 sm:top-32 left-0 sm:left-6 z-20 pointer-events-auto w-full sm:w-64 px-4 sm:px-0">
-         <h2 className="hidden sm:block text-white font-bold mb-4 uppercase tracking-widest text-xs opacity-50">Қолжетімді Реагенттер</h2>
-         <div className="flex flex-row sm:flex-col gap-2 overflow-x-auto sm:overflow-y-auto sm:h-[50vh] pr-2 pb-2 sm:pb-0 custom-scrollbar hide-scrollbar-on-mobile">
-           {AVAILABLE_REACTANTS.map(r => (
+      <div className="absolute top-16 sm:top-28 left-0 sm:left-6 z-20 pointer-events-auto w-full sm:w-72 px-4 sm:px-0">
+         <div className="mb-4">
+           <h2 className="hidden sm:block text-white font-bold mb-3 uppercase tracking-widest text-[10px] opacity-50">Іздеу</h2>
+           <input 
+             type="text" 
+             placeholder="Реагент іздеу..."
+             value={searchTerm}
+             onChange={(e) => setSearchTerm(e.target.value)}
+             className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[var(--color-brand-500)] transition-colors"
+           />
+         </div>
+         <h2 className="hidden sm:block text-white font-bold mb-3 uppercase tracking-widest text-[10px] opacity-50">Қолжетімді Реагенттер</h2>
+         <div className="flex flex-row sm:flex-col gap-2 overflow-x-auto sm:overflow-y-auto sm:h-[50vh] pr-2 pb-2 sm:pb-0 custom-scrollbar hide-scrollbar-on-mobile transition-all">
+           {filteredReactants.map(r => (
              <button 
                 key={r}
                 onClick={() => addReactant(r)}
                 disabled={flask.length >= 2 || reactionResult !== null || isReacting}
-                className="shrink-0 whitespace-nowrap bg-white/5 hover:bg-white/10 text-center sm:text-left px-3 sm:px-4 py-2 sm:py-3 border border-white/10 rounded-lg text-xs sm:text-sm text-slate-300 transition-colors disabled:opacity-30"
+                className="shrink-0 whitespace-nowrap bg-white/5 hover:bg-white/10 text-center sm:text-left px-3 sm:px-4 py-2 sm:py-2.5 border border-white/10 rounded-lg text-xs sm:text-xs text-slate-300 transition-colors disabled:opacity-30"
              >
                {r}
              </button>
            ))}
+           {filteredReactants.length === 0 && (
+             <p className="text-white/30 text-xs mt-2 italic px-2">Ештеңе табылмады</p>
+           )}
          </div>
       </div>
 

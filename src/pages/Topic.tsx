@@ -44,6 +44,7 @@ export default function Topic() {
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
   const [isLectureOpen, setIsLectureOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const MoleculeViewerComponent = MoleculeViewer as any;
 
   // Time tracking
   useEffect(() => {
@@ -475,7 +476,10 @@ export default function Topic() {
                           <div className="text-xs font-mono text-indigo-400 uppercase tracking-widest">
                             Тапсырма {i + 1}
                           </div>
-                          <p className="text-neutral-200 text-lg leading-relaxed" style={{whiteSpace: 'pre-line'}}>
+                          <p
+                            className="text-neutral-200 text-lg leading-relaxed"
+                            style={{ whiteSpace: "pre-line" }}
+                          >
                             {task.text}
                           </p>
                         </div>
