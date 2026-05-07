@@ -204,7 +204,7 @@ export const TOPIC_CONTENT: Record<string, any> = {
       }
     ],
     fullReadingLink: {
-      url: "https://www.example.com/phenols-full-reading",
+      url: "https://www.scribd.com/document/673466652/%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BA%D1%96%D1%82%D0%B0%D0%BF",
       pages: "437+",
     },
   },
@@ -250,7 +250,7 @@ export const TOPIC_CONTENT: Record<string, any> = {
       },
     ],
     fullReadingLink: {
-      url: "https://www.example.com/phenols-full-reading",
+      url: "https://www.scribd.com/document/673466652/%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BA%D1%96%D1%82%D0%B0%D0%BF",
       pages: "437+",
     },
   },
@@ -296,7 +296,7 @@ export const TOPIC_CONTENT: Record<string, any> = {
       },
     ],
     fullReadingLink: {
-      url: "https://www.example.com/phenols-full-reading",
+      url: "https://www.scribd.com/document/673466652/%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BA%D1%96%D1%82%D0%B0%D0%BF",
       pages: "437+",
     },
   },
@@ -382,7 +382,7 @@ export const TOPIC_CONTENT: Record<string, any> = {
       },
     ],
     fullReadingLink: {
-      url: "https://www.example.com/phenols-full-reading",
+      url: "https://www.scribd.com/document/673466652/%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BA%D1%96%D1%82%D0%B0%D0%BF",
       pages: "437+",
     },
   },
@@ -428,7 +428,7 @@ export const TOPIC_CONTENT: Record<string, any> = {
       },
     ],
     fullReadingLink: {
-      url: "https://www.example.com/phenols-full-reading",
+      url: "https://www.scribd.com/document/673466652/%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BA%D1%96%D1%82%D0%B0%D0%BF",
       pages: "437+",
     },
   },
@@ -475,7 +475,7 @@ export const TOPIC_CONTENT: Record<string, any> = {
       },
     ],
     fullReadingLink: {
-      url: "https://www.example.com/phenols-full-reading",
+      url: "https://www.scribd.com/document/673466652/%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BA%D1%96%D1%82%D0%B0%D0%BF",
       pages: "437+",
     },
   },
@@ -521,7 +521,7 @@ export const TOPIC_CONTENT: Record<string, any> = {
       },
     ],
     fullReadingLink: {
-      url: "https://www.example.com/phenols-full-reading",
+      url: "https://www.scribd.com/document/673466652/%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BA%D1%96%D1%82%D0%B0%D0%BF",
       pages: "437+",
     },
   },
@@ -568,7 +568,7 @@ export const TOPIC_CONTENT: Record<string, any> = {
       },
     ],
     fullReadingLink: {
-      url: "https://www.example.com/phenols-full-reading",
+      url: "https://www.scribd.com/document/673466652/%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BA%D1%96%D1%82%D0%B0%D0%BF",
       pages: "437+",
     },
   },
@@ -712,7 +712,7 @@ export const TOPIC_CONTENT: Record<string, any> = {
       { url: "", title: "2-тапсырма: Реакция теңдеуі" },
     ],
     fullReadingLink: {
-      url: "https://www.example.com/phenols-full-reading",
+      url: "https://www.scribd.com/document/673466652/%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BA%D1%96%D1%82%D0%B0%D0%BF",
       pages: "286 - 393",
     },
   },
@@ -758,7 +758,7 @@ export const TOPIC_CONTENT: Record<string, any> = {
       },
     ],
     fullReadingLink: {
-      url: "https://www.example.com/phenols-full-reading",
+      url: "https://www.scribd.com/document/673466652/%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BA%D1%96%D1%82%D0%B0%D0%BF",
       pages: "437+",
     },
   },
@@ -804,7 +804,7 @@ export const TOPIC_CONTENT: Record<string, any> = {
       },
     ],
     fullReadingLink: {
-      url: "https://www.example.com/phenols-full-reading",
+      url: "https://www.scribd.com/document/673466652/%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BA%D1%96%D1%82%D0%B0%D0%BF",
       pages: "437+",
     },
   },
@@ -844,7 +844,7 @@ export const TOPIC_CONTENT: Record<string, any> = {
       },
     ],
     fullReadingLink: {
-      url: "https://www.example.com/phenols-full-reading",
+      url: "https://www.scribd.com/document/673466652/%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BA%D1%96%D1%82%D0%B0%D0%BF",
       pages: "437+",
     },
   },
@@ -884,7 +884,7 @@ export const TOPIC_CONTENT: Record<string, any> = {
       },
     ],
     fullReadingLink: {
-      url: "https://www.example.com/phenols-full-reading",
+      url: "https://www.scribd.com/document/673466652/%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BA%D1%96%D1%82%D0%B0%D0%BF",
       pages: "437+",
     },
   },
@@ -923,7 +923,7 @@ export const TOPIC_CONTENT: Record<string, any> = {
       },
     ],
     fullReadingLink: {
-      url: "https://www.example.com/phenols-full-reading",
+      url: "https://www.scribd.com/document/673466652/%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BA%D1%96%D1%82%D0%B0%D0%BF",
       pages: "437+",
     },
   },
