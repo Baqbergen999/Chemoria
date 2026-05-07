@@ -268,7 +268,7 @@ export default function Home() {
             },
             {
               image:
-                "https://images.unsplash.com/photo-1620601366113-116e0beaaae3?auto=format&fit=crop&q=80&w=400&h=300",
+                "https://www.sciencing.com/sciencing/four-speed-up-chemical-reaction-8539265/edde66328fb249848de1bbc1eb88d035.jpg",
               title: "Химиялық реакциялардың анимациясы",
               description:
                 "Фенолдың түзілу процесі туралы анимациялық презентация",
@@ -276,7 +276,7 @@ export default function Home() {
             },
             {
               image:
-                "https://images.unsplash.com/photo-1614613535914-f8fb2cbdd534?auto=format&fit=crop&q=80&w=400&h=300",
+                "https://www.augustahealth.com/wp-content/uploads/2021/10/labratory-image.jpg",
               title: "Лабораториялық тәжірибе баяндамасы",
               description: "Крахмалдың гидролизі туралы толық зерттеу жұмысы",
               author: "Мадина А.",
@@ -298,7 +298,7 @@ export default function Home() {
             },
             {
               image:
-                "https://images.unsplash.com/photo-1542644265-fba5f7e7f781?auto=format&fit=crop&q=80&w=400&h=300",
+                "https://collegeprep.uworld.com/wp-content/uploads/2025/07/CP_Pillar_ACT-Science-Formulas-Equations_Header.webp",
               title: "Химиялық формулалардың визуализациясы",
               description:
                 "Органикалық қосылыстардың құрылымдық формулаларының жинағы",
@@ -306,7 +306,7 @@ export default function Home() {
             },
             {
               image:
-                "https://images.unsplash.com/photo-1620601366113-116e0beaaae3?auto=format&fit=crop&q=80&w=400&h=300",
+                "https://skillspace.ru/blog/content/images/2024/03/chto-takoe-interaktivnoe-obuchenie-1-min.jpg",
               title: "Интерактивті оқу материалы",
               description: "Алициклді қосылыстар туралы интерактивті тест",
               author: "Асель Р.",
