@@ -14,6 +14,7 @@ import Testing from './pages/Testing';
 import TestSession from './pages/TestSession';
 import Analytics from './pages/Analytics';
 import MolecularReality from './pages/MolecularReality';
+import LectureEditor from './pages/LectureEditor';
 
 export default function App() {
   const { updateStreak } = useStore();
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/testing" element={<Testing />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/reality" element={<MolecularReality />} />
+          <Route path="/lecture/:topicId" element={<LectureEditor />} />
         </Routes>
       </main>
     </div>

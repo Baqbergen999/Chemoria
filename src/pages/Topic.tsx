@@ -17,6 +17,7 @@ import {
   Lightbulb,
   PenTool,
   BookText,
+  Plus,
 } from "lucide-react";
 import { TOPICS, TOPIC_CONTENT } from "../data/topics";
 import { useStore } from "../store/useStore";
@@ -124,7 +125,8 @@ export default function Topic() {
                   download={topic.documentName}
                   className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-100 px-6 py-3 rounded-xl border border-blue-500/30 font-bold transition-colors flex items-center gap-2"
                 >
-                  <BookOpen className="h-5 w-5 text-blue-400" /> Дәріс файлы (.docx)
+                  <BookOpen className="h-5 w-5 text-blue-400" /> Дәріс файлы
+                  (.docx)
                 </a>
               )}
             </div>
@@ -134,9 +136,15 @@ export default function Topic() {
           <div className="space-y-6 mt-8">
             {/* Негізгі тақырып (Main Topic) */}
             {(content.mainTopic || content.explanations) && (
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="glass-panel p-6 border-l-2" style={{ borderLeftColor: topic.color }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="glass-panel p-6 border-l-2"
+                style={{ borderLeftColor: topic.color }}
+              >
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <BookText className="text-[var(--color-brand-500)] h-5 w-5" /> Негізгі тақырып
+                  <BookText className="text-[var(--color-brand-500)] h-5 w-5" />{" "}
+                  Негізгі тақырып
                 </h3>
                 {typeof content.mainTopic === "string" && (
                   <p className="text-neutral-300 text-base leading-relaxed whitespace-pre-wrap mb-4 font-medium italic">
@@ -165,16 +173,31 @@ export default function Topic() {
 
             {/* Формула жаттау (Formulas) */}
             {content.formulas && (
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="glass-panel p-6 border-l-2" style={{ borderLeftColor: topic.color }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="glass-panel p-6 border-l-2"
+                style={{ borderLeftColor: topic.color }}
+              >
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                   <Sigma className="text-pink-500 h-5 w-5" /> Формула жаттау
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {content.formulas.map((item: any, i: number) => (
-                    <div key={i} className="bg-black/30 p-4 rounded-xl border border-white/5 flex flex-col justify-between">
-                      <h4 className="font-semibold text-white mb-2">{item.name}</h4>
-                      <div className="font-mono text-lg text-pink-400 bg-black/50 p-3 rounded-lg text-center mb-3 border border-pink-500/20">{item.formula}</div>
-                      <p className="text-sm text-neutral-400 leading-relaxed">{item.description}</p>
+                    <div
+                      key={i}
+                      className="bg-black/30 p-4 rounded-xl border border-white/5 flex flex-col justify-between"
+                    >
+                      <h4 className="font-semibold text-white mb-2">
+                        {item.name}
+                      </h4>
+                      <div className="font-mono text-lg text-pink-400 bg-black/50 p-3 rounded-lg text-center mb-3 border border-pink-500/20">
+                        {item.formula}
+                      </div>
+                      <p className="text-sm text-neutral-400 leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -183,15 +206,29 @@ export default function Topic() {
 
             {/* Реакциялар қалай жүреді (Reactions) */}
             {content.reactions && (
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="glass-panel p-6 border-l-2" style={{ borderLeftColor: topic.color }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="glass-panel p-6 border-l-2"
+                style={{ borderLeftColor: topic.color }}
+              >
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <Beaker className="text-green-500 h-5 w-5" /> Реакциялар қалай жүреді
+                  <Beaker className="text-green-500 h-5 w-5" /> Реакциялар қалай
+                  жүреді
                 </h3>
                 <div className="space-y-4">
                   {content.reactions.map((item: any, i: number) => (
-                    <div key={i} className="bg-black/20 p-4 rounded-xl border border-green-500/10">
-                      <div className="font-mono text-base md:text-lg text-green-400 bg-black/40 p-3 rounded-lg text-center mb-3 overflow-x-auto whitespace-nowrap">{item.equation}</div>
-                      <p className="text-neutral-300 text-sm leading-relaxed">{item.description}</p>
+                    <div
+                      key={i}
+                      className="bg-black/20 p-4 rounded-xl border border-green-500/10"
+                    >
+                      <div className="font-mono text-base md:text-lg text-green-400 bg-black/40 p-3 rounded-lg text-center mb-3 overflow-x-auto whitespace-nowrap">
+                        {item.equation}
+                      </div>
+                      <p className="text-neutral-300 text-sm leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -200,13 +237,23 @@ export default function Topic() {
 
             {/* Маңызды білу керек зат (Important Notes) */}
             {content.importantNotes && (
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="glass-panel p-6 border-l-2 bg-yellow-500/5" style={{ borderLeftColor: topic.color }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="glass-panel p-6 border-l-2 bg-yellow-500/5"
+                style={{ borderLeftColor: topic.color }}
+              >
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <Lightbulb className="text-yellow-500 h-5 w-5" /> Маңызды білу керек зат
+                  <Lightbulb className="text-yellow-500 h-5 w-5" /> Маңызды білу
+                  керек зат
                 </h3>
                 <ul className="space-y-3">
                   {content.importantNotes.map((item: string, i: number) => (
-                    <li key={i} className="flex items-start gap-3 text-neutral-300 leading-relaxed">
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-neutral-300 leading-relaxed"
+                    >
                       <div className="min-w-[6px] h-[6px] rounded-full bg-yellow-500 mt-2" />
                       <span>{item}</span>
                     </li>
@@ -217,19 +264,38 @@ export default function Topic() {
 
             {/* Есептер шығарып үйрену (Practice Problems) */}
             {content.practiceProblems && (
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="glass-panel p-6 border-l-2" style={{ borderLeftColor: topic.color }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="glass-panel p-6 border-l-2"
+                style={{ borderLeftColor: topic.color }}
+              >
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <PenTool className="text-blue-500 h-5 w-5" /> Есептер шығарып үйрену
+                  <PenTool className="text-blue-500 h-5 w-5" /> Есептер шығарып
+                  үйрену
                 </h3>
                 <div className="space-y-6">
                   {content.practiceProblems.map((item: any, i: number) => (
-                    <div key={i} className="bg-blue-500/5 p-5 rounded-xl border border-blue-500/10">
-                      <h4 className="font-bold text-white mb-3">Есеп {i + 1}: {item.question}</h4>
+                    <div
+                      key={i}
+                      className="bg-blue-500/5 p-5 rounded-xl border border-blue-500/10"
+                    >
+                      <h4 className="font-bold text-white mb-3">
+                        Есеп {i + 1}: {item.question}
+                      </h4>
                       <div className="bg-black/40 p-4 rounded-lg space-y-2 relative mt-4">
-                        <div className="text-xs font-mono text-blue-400 absolute top-2 right-3">Шешуі</div>
+                        <div className="text-xs font-mono text-blue-400 absolute top-2 right-3">
+                          Шешуі
+                        </div>
                         <div className="pt-2">
                           {item.steps.map((step: string, j: number) => (
-                            <p key={j} className="text-neutral-400 text-sm mb-2 leading-relaxed">{j + 1}. {step}</p>
+                            <p
+                              key={j}
+                              className="text-neutral-400 text-sm mb-2 leading-relaxed"
+                            >
+                              {j + 1}. {step}
+                            </p>
                           ))}
                         </div>
                       </div>
@@ -238,31 +304,67 @@ export default function Topic() {
                 </div>
               </motion.div>
             )}
-            
+
             {/* Links and Tasks */}
             {content.links && content.links.length > 0 && (
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="glass-panel p-6 border-l-2 bg-[var(--color-brand-500)]/5" style={{ borderLeftColor: topic.color }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="glass-panel p-6 border-l-2 bg-[var(--color-brand-500)]/5"
+                style={{ borderLeftColor: topic.color }}
+              >
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <Play className="h-5 w-5 text-[var(--color-brand-500)]" /> Қосымша сабақтар мен Тапсырмалар
+                  <Play className="h-5 w-5 text-[var(--color-brand-500)]" />{" "}
+                  Қосымша сабақтар мен Тапсырмалар
                 </h3>
                 <div className="flex flex-col gap-3">
                   {content.links.map((link: any, i: number) => (
-                    <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 p-3 rounded-xl bg-blue-500/5 border-white/5 hover:bg-white/10 transition-colors border border-transparent hover:border-white/10">
+                    <a
+                      key={i}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-3 p-3 rounded-xl bg-blue-500/5 border-white/5 hover:bg-white/10 transition-colors border border-transparent hover:border-white/10"
+                    >
                       <div className="h-8 w-8 rounded-full bg-[var(--color-brand-500)]/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                         <Play className="h-4 w-4 text-[var(--color-brand-500)] ml-0.5" />
                       </div>
-                      <span className="text-blue-300 group-hover:text-blue-200 transition-colors font-medium whitespace-pre-wrap">{link.title}</span>
+                      <span className="text-blue-300 group-hover:text-blue-200 transition-colors font-medium whitespace-pre-wrap">
+                        {link.title}
+                      </span>
                     </a>
                   ))}
                 </div>
                 {imageTasks.length > 0 && (
                   <div className="mt-6 border-t border-white/10 pt-4">
-                    <h4 className="font-bold text-lg mb-3 flex items-center gap-2 text-white"><ImageIcon className="h-5 w-5 text-[var(--color-brand-500)]" /> Тапсырмалар</h4>
+                    <h4 className="font-bold text-lg mb-3 flex items-center gap-2 text-white">
+                      <ImageIcon className="h-5 w-5 text-[var(--color-brand-500)]" />{" "}
+                      Тапсырмалар
+                    </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {imageTasks.map((task: any, i: number) => (
-                        <div key={i} className="group overflow-hidden rounded-lg border border-white/10 bg-black/20 cursor-pointer" onClick={() => setSelectedImage(task.url)}>
-                          <img src={task.url.startsWith('http') ? task.url : (task.url.startsWith('/') ? task.url : `/${task.url}`)} alt={task.title || "Тапсырма"} className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300" />
-                          {task.title && <div className="bg-black/60 backdrop-blur-sm p-3 text-sm text-center text-white/90">{task.title}</div>}
+                        <div
+                          key={i}
+                          className="group overflow-hidden rounded-lg border border-white/10 bg-black/20 cursor-pointer"
+                          onClick={() => setSelectedImage(task.url)}
+                        >
+                          <img
+                            src={
+                              task.url.startsWith("http")
+                                ? task.url
+                                : task.url.startsWith("/")
+                                  ? task.url
+                                  : `/${task.url}`
+                            }
+                            alt={task.title || "Тапсырма"}
+                            className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
+                          />
+                          {task.title && (
+                            <div className="bg-black/60 backdrop-blur-sm p-3 text-sm text-center text-white/90">
+                              {task.title}
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>
@@ -333,6 +435,94 @@ export default function Topic() {
               </span>
             </div>
           </motion.div>
+
+          {/* New Tasks Section under 3D Viewer */}
+          {content.tasks && content.tasks.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="glass-panel p-6 border-l-2 bg-gradient-to-br from-indigo-500/5 to-transparent flex flex-col gap-6"
+              style={{ borderLeftColor: topic.color }}
+            >
+              <h2 className="text-2xl font-bold flex items-center gap-2">
+                <PenTool className="h-6 w-6 text-indigo-400" /> Тапсырмалар
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {content.tasks.map((task: any, i: number) => {
+                  const isLastOddItem =
+                    content.tasks.length % 2 === 1 &&
+                    i === content.tasks.length - 1;
+                  return (
+                    <div
+                      key={i}
+                      className={`flex flex-col gap-4 p-4 rounded-xl bg-black/30 border border-white/5 hover:border-white/10 transition-all ${isLastOddItem ? "md:col-span-2" : ""}`}
+                    >
+                      {task.imageUrl && (
+                        <div
+                          className="rounded-lg overflow-hidden border border-white/10 cursor-pointer group"
+                          onClick={() => setSelectedImage(task.imageUrl)}
+                        >
+                          <img
+                            src={`/public/${task.imageUrl}`}
+                            alt="Task"
+                            className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                          />
+                        </div>
+                      )}
+                      {task.text && (
+                        <div className="space-y-2">
+                          <div className="text-xs font-mono text-indigo-400 uppercase tracking-widest">
+                            Тапсырма {i + 1}
+                          </div>
+                          <p className="text-neutral-200 text-lg leading-relaxed" style={{whiteSpace: 'pre-line'}}>
+                            {task.text}
+                          </p>
+                        </div>
+                      )}
+                      {task.link && task.link.url && (
+                        <a
+                          href={task.link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors bg-blue-400/10 self-start px-3 py-1.5 rounded-lg border border-blue-400/20"
+                        >
+                          <Play className="h-3 w-3" />{" "}
+                          {task.link.title || "Толығырақ"}
+                        </a>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+
+          {/* Lecture 2 Button / Shared Content Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            className="glass-panel p-6 border-l-2 bg-gradient-to-br from-blue-500/5 to-transparent"
+            style={{ borderLeftColor: "#3b82f6" }}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-bold flex items-center gap-2">
+                <BookOpen className="h-5 w-5 text-blue-400" /> Дәріс 2
+                (Интерактивті)
+              </h2>
+              <button
+                onClick={() => navigate(`/lecture/${topic.id}`)}
+                className="text-xs bg-blue-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-blue-500/20"
+              >
+                Ашу және Өңдеу
+              </button>
+            </div>
+            <p className="text-sm text-neutral-400 leading-relaxed">
+              Бұл бөлімде сіз және басқа пайдаланушылар бірлесе отырып дәріс
+              материалдарын (мәтін, сурет) қоса аласыздар.
+            </p>
+          </motion.div>
         </div>
       </div>
 
@@ -394,8 +584,10 @@ export default function Topic() {
                 </p>
               </div>
               <div className="text-neutral-300 text-sm mb-4 flex gap-1">
-                <span className="font-bold">"{content.fullReadingLink.pages}"</span> бет • Толық теориялық материал
-                • Практикалық мысалдар
+                <span className="font-bold">
+                  "{content.fullReadingLink.pages}"
+                </span>{" "}
+                бет • Толық теориялық материал • Практикалық мысалдар
               </div>
               <div className="flex items-center gap-2 text-[var(--color-brand-500)] font-semibold">
                 <span>Оқуға кіру</span>
@@ -438,10 +630,18 @@ export default function Topic() {
               </button>
 
               <div className="p-8 pb-4 border-b border-neutral-800">
-                <h2 className="text-3xl font-bold flex items-center gap-3 text-white">
-                  <BookOpen className="text-blue-400" />
-                  {topic.title} - Толық Дәріс
-                </h2>
+                <div className="flex items-center justify-between">
+                  <h2 className="text-3xl font-bold flex items-center gap-3 text-white">
+                    <BookOpen className="text-blue-400" />
+                    {topic.title} - Толық Дәріс
+                  </h2>
+                  <button
+                    onClick={() => navigate(`/lecture/${topic.id}`)}
+                    className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl flex items-center gap-2 font-bold transition-all shadow-lg shadow-blue-500/20"
+                  >
+                    <Plus className="h-4 w-4" /> Дәріс 2.0 (Бірлескен)
+                  </button>
+                </div>
               </div>
 
               <div className="overflow-y-auto p-4 sm:p-8 space-y-12 custom-scrollbar">
@@ -516,7 +716,13 @@ export default function Topic() {
                           onClick={() => setSelectedImage(task.url)}
                         >
                           <img
-                            src={task.url.startsWith('http') ? task.url : (task.url.startsWith('/') ? task.url : `/${task.url}`)}
+                            src={
+                              task.url.startsWith("http")
+                                ? task.url
+                                : task.url.startsWith("/")
+                                  ? task.url
+                                  : `/${task.url}`
+                            }
                             alt={task.title || "Тапсырма"}
                             className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                           />
@@ -563,7 +769,9 @@ export default function Topic() {
                 src={
                   selectedImage.startsWith("http")
                     ? selectedImage
-                    : (selectedImage.startsWith("/") ? selectedImage : `/${selectedImage}`)
+                    : selectedImage.startsWith("/")
+                      ? selectedImage
+                      : `/${selectedImage}`
                 }
                 alt="Үлкейтілген сурет"
                 className="w-full h-auto max-h-[90vh] object-contain rounded-xl"

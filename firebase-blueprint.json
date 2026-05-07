@@ -1,0 +1,23 @@
+{
+  "entities": {
+    "LectureContent": {
+      "title": "Lecture Content",
+      "description": "Dynamic content for shared lectures",
+      "type": "object",
+      "properties": {
+        "topicId": { "type": "string" },
+        "type": { "type": "string", "enum": ["text", "image"] },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "authorId": { "type": "string" }
+      },
+      "required": ["topicId", "type", "content", "createdAt"]
+    }
+  },
+  "firestore": {
+    "lectures/{lectureId}": {
+      "schema": "LectureContent",
+      "description": "Shared lecture blocks for each topic"
+    }
+  }
+}

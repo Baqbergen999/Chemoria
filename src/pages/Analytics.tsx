@@ -103,7 +103,7 @@ export default function Analytics() {
                 <Tooltip 
                   contentStyle={{ backgroundColor: '#111', borderColor: '#333', borderRadius: '8px' }}
                   itemStyle={{ color: '#00f0ff' }}
-                  formatter={(val: number) => [`${val}%`, 'Ұпай']}
+                  formatter={(val) => val !== undefined ? [`${val}%`, 'Ұпай'] : ['', 'Ұпай']}
                 />
                 <Line type="monotone" dataKey="score" stroke="var(--color-brand-500)" strokeWidth={3} dot={{ fill: "var(--color-brand-500)", r: 4 }} />
               </LineChart>
