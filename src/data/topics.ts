@@ -17,7 +17,7 @@ export const TOPICS: Topic[] = [
     difficulty: "Оңай",
     moleculeFormula: "Glucose",
     color: "#06b6d4",
-    documentName: "l1-3.docx.docx",
+    documentName: "lecture1-3.docx.docx",
   },
   {
     id: "t2",
